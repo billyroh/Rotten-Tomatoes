@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ListViewController.h"
+#import "DVDViewController.h"
 
 @implementation AppDelegate
 
@@ -16,6 +18,20 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    ListViewController *listViewController = [[ListViewController alloc] init];
+    UINavigationController *listNavigationController = [[UINavigationController alloc] initWithRootViewController:listViewController];
+    listViewController.title = @"Movies";
+    
+    DVDViewController *dvdViewController = [[DVDViewController alloc] init];
+    UINavigationController *dvdNavigationController = [[UINavigationController alloc] initWithRootViewController:dvdViewController];
+    dvdViewController.title = @"DVDs";
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[listNavigationController, dvdNavigationController];
+    
+    self.window.rootViewController = tabBarController;
+    
     return YES;
 }
 
